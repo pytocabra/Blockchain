@@ -14,7 +14,8 @@ class Block:
     def __repr__(self):
         result = f'Timestamp: {self.timestamp}\n'
         result += f'Transactions: {self.transactions}\n'
-        result += f'Current hash: {self.generate_hash()}'
+        result += f'Current hash: {self.generate_hash()}\n'
+        result += f'Previous hash: {self.previous_hash}\n'
         return result
 
     def generate_hash(self):
