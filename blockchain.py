@@ -20,13 +20,15 @@ class Blockchain:
             print(block)
 
     def add_block(self, transactions):
-        # add new block (transaction) to chain
+        # add new block (transaction) to chain with proof of work
         previous_hash = self.chain[len(self.chain)-1].hash
         new_block = Block(transactions, previous_hash)
+        proof = self.proof_of_work(new_block)
         self.chain.append(new_block)
+        return (proof, new_block)
 
     def validate(self):
-        # validate chain integrity by checkingp revious hash values
+        # validate chain integrity by checking previous hash values
         for i in range(1, len(self.chain)):
             previous_block = self.chain[i-1]
             current_block = self.chain[i]
@@ -35,4 +37,13 @@ class Blockchain:
             if current_block.previous_hash != previous_block.hash:
                 return False
             return True
+
+    def proof_of_work(self, block, proof_level=3):
+        # calculate proof of work - last :proof_level 'zeros'
+        proof = block.generate_hash()
+        while proof[:proof_level] != '0' * proof_level:
+            block.nonce += 1 
+            proof = block.generate_hash()
+        block.nonce = 0
+        return proof
 
