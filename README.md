@@ -1,4 +1,4 @@
-# Blockchain <img src="attachment:block.png" width="45" height="45"/>
+# Blockchain <img src="block.png" width="45" height="45"/>
 Simple blockchain implementation using sha256 hash method and proof of work.
 
 ## Block
