@@ -3,7 +3,6 @@ import string
 
 
 def generate_random_name(length):
-    # generates random name for sender and receiver in transactions
     symbols = string.hexdigits
     result = ''.join((choice(symbols)) for _ in range(length))
     return result
